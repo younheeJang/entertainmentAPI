@@ -1,0 +1,19 @@
+{
+    "name": "entertainmentapi",
+    "version": "1.0.0",
+    "description": "search information about entertainment",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "author": "curious",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "bootstrap": "^4.3.1",
+        "ejs": "^2.6.1",
+        "express": "^4.16.4",
+        "fs": "0.0.1-security",
+        "mongoose": "^5.4.19"
+    }
+}
