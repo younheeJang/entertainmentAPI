@@ -12,17 +12,141 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+    <script>
+        //use window.onload : cause script running after all elements loaded: 
+        window.onload = () => {
+            const height50 = document.getElementsByClassName('h50')
+            for (let i = 0; i < height50.length; i++) {
+                height50[i].style.height = 50 + 'px'
+            }
 
+        }
+    </script>
+    <style>
+        @media only screen and (min-width: 768px) {
+            [scope*="hide-in-web"] {
+                display: none;
+            }
+        }
+        
+        @media only screen and (max-width: 768px) {
+            [scope*="hide-in-mobile"] {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="height50"></div>
+
+    <div class="h50"></div>
+    <div class="h50"></div>
     <div class="container">
-        <div class="btn btn-warning" style="color:purple; font-weight: bold;">
-            <%=datas[0].nm%>
+        <h1>WHAT DO WE WANT TO MY ENTERTAINMENT INTERESTING</h1>
+    </div>
+    <div class="h50"></div>
+    <div class="container">
+        <div class="table-responsive-sm">
+            <table id="example" class="table table-sm table-dark table-hover" style="width:100%">
+                <thead>
+                    <tr scope="row">
+                        <th scope="col-1">상호명</th>
+                        <th scope="col-4 hide-in-mobile">주소</th>
+                        <th scope="col-2 hide-in-mobile">전화번호</th>
+                        <th scope="col-3 hide-in-mobile">허가일자</th>
+                        <th scope="col-1 hide-in-mobile">x좌표</th>
+                        <th scope="col-1 hide-in-mobile">y좌표</th>
+                        <th scope="hide-in-web">상세</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(let i=0; i<datas.length; i++){%>
+                        <tr scope="row">
+                            <td>
+                                <%=datas[i].nm%>
+                            </td>
+                            <td scope="hide-in-mobile">
+                                <%=datas[i].addr%>
+                            </td>
+                            <td scope="hide-in-mobile">
+                                <%=datas[i].tel%>
+                            </td>
+                            <td scope="hide-in-mobile">
+                                <%=datas[i].permission_dt%>
+                            </td>
+                            <td scope="hide-in-mobile">
+                                <%=datas[i].xcode%>
+                            </td>
+                            <td scope="hide-in-mobile">
+                                <%=datas[i].ycode%>
+                            </td>
+                            <td scope="hide-in-web">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%=datas[i].id%>">
+                                            상세
+                                </button>
+                            </td>
+                            <!--modal-->
+                            <div class="modal fade" id="<%=datas[i].id%>">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                <%=datas[i].nm%>
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body bg-dark">
+                                            <div class="container ">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">
+                                                        주소:
+                                                        <%=datas[i].addr%>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        전번:
+                                                        <%=datas[i].tel%>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        허가일:
+                                                        <%=datas[i].permission_dt%>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        x좌표:
+                                                        <%=datas[i].xcode%>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        y좌표:
+                                                        <%=datas[i].ycode%>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </tr>
+
+
+                        <%}%>
+                </tbody>
+            </table>
         </div>
 
     </div>
+    <div class="h50"></div>
 </body>
 
 </html>
