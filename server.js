@@ -4,14 +4,18 @@ let bodyParser = require('body-parser');
 let fs = require("fs")
 const PORT = 3000
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
 
 app.listen(PORT, () => {
     console.log('server running under port num ' + PORT)
 })
 
+
+
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.use(express.static(__dirname + '/views'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
